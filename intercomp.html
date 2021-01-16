@@ -51,12 +51,7 @@
 										<div id="popup1"></div>
 									</div>
 
-									<hr class="major" />
-									<!-- correlation matrix -->
-									<h2>Correlation Matrix</h2>
-									<div class="box">
-										<IFRAME NAME="content_frame" width=100% SRC="assets/stats/covariance_matrix.html" ></IFRAME>
-									</div>
+									
 
 									<hr class="major" />
 									<!-- codes for operation for each tile -->
@@ -103,12 +98,18 @@
 												</tbody>
 											</table>
 										</div>
+									<hr class="major" />
+									<!-- correlation matrix -->
+									<h2>Correlation Matrix</h2>
+									<div class="box">
+										<IFRAME NAME="content_frame" width=100% SRC="assets/stats/covariance_matrix.html" ></IFRAME>
+									</div>
 
 
 									<hr class="major" />
 									<!-- Conclusion -->
 									<h2 id="elements">Conclusion</h2>
-									<p> The correlation matrix measures the similarities between the two maps, the greater the differences, the worse the correlation index gets. The matrix shown above is a square, positive and symmetrical matrix. Since we are comparing two maps, the matrix will have two rows and two columns.The first row and column are associated with GHS map while the second ones are associated with Worldpop map, that’s the reason why we find 1 on the diagonal: both maps are 100% correlated with themselves. Observing the matrix obtained it is possible to state that the linear correlation between the maps is strong, its index is in fact 0.944534. The results obtained are consisten, the difference of the Worldpop map compared to the GHS one is minimal.The fact that the tiles of group_10 covered some uninhabited areas helped to have a higher correlation index. Analyzing the correlation index of each single tile, we observe that this tends to increase in the sea and in the northern islands: in these places there is no population (NaN values) and therefore the correlation index is 1. On the contrary in the mainland, as the population increased, the index worsened.</p>
+									<p>Looking at the stats, we can observe that the value of the sum is positive: we have more positive values than negative ones. The min and the max values are quite big, but the mean is not so far from 0. This means that the cells with a big difference are not so frequent with respect to the total number of cells. The correlation matrix measures the similarities between the two maps, the greater the differences, the worse the correlation index gets. The matrix shown above is a square, positive and symmetrical matrix. Since we are comparing two maps, the matrix will have two rows and two columns.The first row and column are associated with GHS map while the second ones are associated with Worldpop map, that’s the reason why we find 1 on the diagonal: both maps are 100% correlated with themselves. Observing the matrix obtained it is possible to state that the linear correlation between the maps is strong, its index is in fact 0.944534. The results obtained are consisten, the difference of the Worldpop map compared to the GHS one is minimal.The fact that the tiles of group_10 covered some uninhabited areas helped to have a higher correlation index. Analyzing the correlation index of each single tile, we observe that this tends to increase in the sea and in the northern islands: in these places there is no population (NaN values) and therefore the correlation index is 1. On the contrary in the mainland, as the population increased, the index worsened.</p>
 
 									<h2 id="elements">Statistics</h2>
 								</section>
