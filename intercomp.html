@@ -51,25 +51,36 @@
 										<div id="popup1"></div>
 									</div>
 
-									<hr class="major" />
-									<!-- correlation matrix -->
-									<h2>Correlation Matrix</h2>
-									<div class="box">
-										<p>N = 37171762
-										</br>1.000000 0.943427 
-										</br>0.943427 1.000000 
-										</br></p>
-									</div>
+									
 
 									<hr class="major" />
 									<!-- codes for operation for each tile -->
-									<h2>How to Compute Correlation Matrix For Each Tile</h2>
+									<p>Both maps are based on local data, big satellite data and both mainly sense the presence of building to estimate the population but they use different logics, methods and algorithms to do it. We therefore have two independent and not comparable datasets of the same thing. In each map the choice of the values ​​to put on the inland water bodies and the value representing the no-data is different: this is the main issue we have to fix. In fact, in the GHS map null values (= -200) are present on seas and oceans while in the WorldPop map null values (= -32768) are present also over inland water bodies, where GHS-POP has values = 0 which means not populated. It is therefore necessary to pre-process the data and then make the intercomparison. </p>
+
+									<p>1)PREPROCESSING</p>    
+
+									<p>With the preprocessing step two comparable maps will be obtained: through this step the maps are clipped, aligned and the same values in both are set in order to harmonize the datasets regarding what their values represent.</p>
+
+									<p>2)PROCESSING</p>
+
+									<p>With the processing step, once the difference between the two maps has been done, the correlation matrix and statistical information are computed. Lastly the correlation matrix of each single tile is calculated. </p>
+
+									<h2>How to intercompare automatically?</h2>
+									<h2>How to intercompare automatically?</h2>
+									<div class="tab">
+										<button class="tablinks" onclick="openCode(event, 'step1')">Step 1 Preprocessing</button>
+										<button class="tablinks" onclick="openCode(event, 'step2')">Step 2 Processing</button>
+									  </div>
+									  
+									  <!-- Tab content -->
+									  <div id="step1" class="tabcontent">
+										<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_1.py" ></IFRAME>
+									  </div>
+									  
+									  <div id="step2" class="tabcontent">
+										<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_2.py" ></IFRAME>
+									  </div>
 									<div>
-										<div class='box'>
-											<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/stats/batch.py" ></IFRAME>
-										</div>
-										<img src='images/batch_usage.jpeg' width=50% alt='Usage'>
-									</div>
 
 									<hr class="major" />
 									<!-- Statistics -->
@@ -87,6 +98,20 @@
 												</tbody>
 											</table>
 										</div>
+									<hr class="major" />
+									<!-- correlation matrix -->
+									<h2>Correlation Matrix</h2>
+									<div class="box">
+										<IFRAME NAME="content_frame" width=100% SRC="assets/stats/covariance_matrix.html" ></IFRAME>
+									</div>
+
+
+									<hr class="major" />
+									<!-- Conclusion -->
+									<h2 id="elements">Conclusion</h2>
+									<p>Looking at the stats, we can observe that the value of the sum is positive: we have more positive values than negative ones. The min and the max values are quite big, but the mean is not so far from 0. This means that the cells with a big difference are not so frequent with respect to the total number of cells. The correlation matrix measures the similarities between the two maps, the greater the differences, the worse the correlation index gets. The matrix shown above is a square, positive and symmetrical matrix. Since we are comparing two maps, the matrix will have two rows and two columns.The first row and column are associated with GHS map while the second ones are associated with Worldpop map, that’s the reason why we find 1 on the diagonal: both maps are 100% correlated with themselves. Observing the matrix obtained it is possible to state that the linear correlation between the maps is strong, its index is in fact 0.944534. The results obtained are consisten, the difference of the Worldpop map compared to the GHS one is minimal.The fact that the tiles of group_10 covered some uninhabited areas helped to have a higher correlation index. Analyzing the correlation index of each single tile, we observe that this tends to increase in the sea and in the northern islands: in these places there is no population (NaN values) and therefore the correlation index is 1. On the contrary in the mainland, as the population increased, the index worsened.</p>
+
+									<h2 id="elements">Statistics</h2>
 								</section>
 
 						</div>
@@ -164,6 +189,25 @@
 						});
 					}
 				})
+
+				function openCode(evt, step) {
+					var i, tabcontent, tablinks;
+
+					tabcontent = document.getElementsByClassName("tabcontent");
+					for (i = 0; i < tabcontent.length; i++) {
+						tabcontent[i].style.display = "none";
+					}
+
+					// Get all elements with class="tablinks" and remove the class "active"
+					tablinks = document.getElementsByClassName("tablinks");
+					for (i = 0; i < tablinks.length; i++) {
+						tablinks[i].className = tablinks[i].className.replace(" active", "");
+					}
+
+					// Show the current tab, and add an "active" class to the button that opened the tab
+					document.getElementById(step).style.display = "block";
+					evt.currentTarget.className += " active";
+				}
 			</script>
 
 	</body>
